@@ -1,0 +1,10 @@
+https://djangocentral.com/building-a-blog-application-with-django/
+django:
+
+models.slugfield
+models.ForeignKey(...,related_name='')
+DateTimeField(auto_now and auto_now_add)
+
+editing admin panel view of tables.
+
+generic.ListView
