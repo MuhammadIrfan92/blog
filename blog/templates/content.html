@@ -4,11 +4,11 @@
     {%for i in data%}
     <h1 style="color:rgba(21, 23, 54, 0.828);">{{i.title}} </h1>
     <br>
-    <p style="background:linear-gradient(rgb(166, 224, 99),white); padding:10px; margin:auto">{{i.content}}</p>
+    <p style="background:linear-gradient(rgb(10, 19, 1),rgb(70, 25, 25)); padding:10px; margin:auto; color:darkkhaki">{{i.content}}</p>
     <br>
     <h5>Author:{{i.author}}</h5>
     <h5>Date:{{i.created_on}}</h5>
-    <h5>Category:{{i.category}}</h5>
+    <h5 style="text-transform: uppercase;">Category:{{i.category}}</h5>
 
     {%endfor%}
 </div>
