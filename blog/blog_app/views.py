@@ -1,12 +1,47 @@
+from django.db.models.fields.related import create_many_to_many_intermediary_model
 from django.shortcuts import render
 from .models import Post
 from django.views import generic
 # Create your views here.
 
 
+def catcategories(request):
+    data = Post.objects.all()
+    return render(request,"categories.html",{'data':data})
+
+
+def catlist(request, header):
+    data = Post.objects.filter(category=header)
+    return render(request,'catlist.html',{'data':data})
+
+def content(request,header):
+    data = Post.objects.filter(title=header)
+    if (data):
+        return render(request,'content.html',{'data':data,"header":header})
+    else:
+        return render(request,'home.html')
+
+    
+
+def home(request):
+    sports = Post.objects.filter(category='sports')
+    politics = Post.objects.filter(category='politics')
+    geography = Post.objects.filter(category='geography')
+    fashion = Post.objects.filter(category="fashion")
+    content = {
+        'politics':politics,
+        'sports':sports,
+        'fashion':fashion,
+        'geography':geography,
+    }
+    return render(request,"home.html",content)
+
+
+
+
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status = 1).order_by('-created_on')
-    template_name = 'index.html'
+    template_name = 'main.html'
 
     #While this view is executing, self.object_list will contain the list of objects (usually,
     #  but not necessarily a queryset) that the view is operating upon.

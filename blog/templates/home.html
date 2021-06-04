@@ -1,0 +1,49 @@
+{% extends "main.html"%}
+
+{%block content%}
+{% for i in sports%}
+
+
+    
+<div class="card m-3" style="background:linear-gradient(rgb(125, 111, 206),white)">
+    <div class="card-body">
+        <a href="{% url 'content' i.title %}" class="btn "><h5 class="card-title">{{i.title}}</h5> </a>
+      <p class="card-text" style="text-transform: uppercase; border-style: ridge;">Category: {{i.category}}</p>
+      <p class="card-text">Author: {{i.author}} | Created on:{{i.created_on}}</p>
+      
+    </div>
+  </div>
+
+
+{% endfor %}
+{% for i in politics%}
+<div class="card m-3" style="background:linear-gradient(rgb(125, 111, 206),white)" >
+    <div class="card-body">
+        <a href="{% url 'content' i.title %}" class="btn "><h5 class="card-title">{{i.title}}</h5> </a>
+        <p class="card-text" style="text-transform: uppercase; border-style: ridge;">Category: {{i.category}}</p>
+      <p class="card-text">Author: {{i.author}} | Created on:{{i.created_on}}</p>
+      
+    </div>
+  </div>
+{% endfor %}
+{% for i in geography%}
+<div class="card m-3" style="background:linear-gradient(rgb(125, 111, 206),white)">
+    <div class="card-body">
+        <a href="{% url 'content' i.title %}" class="btn "><h5 class="card-title">{{i.title}}</h5> </a>
+        <p class="card-text" style="text-transform: uppercase; border-style: ridge;">Category: {{i.category}}</p>
+      <p class="card-text">Author: {{i.author}} | Created on:{{i.created_on}}</p>
+      
+    </div>
+  </div>
+{% endfor %}
+{% for i in fashion%}
+<div class="card m-3" style="background:linear-gradient(rgb(125, 111, 206),white)">
+    <div class="card-body">
+        <a href="{% url 'content' i.title %}" class="btn "><h5 class="card-title">{{i.title}}</h5> </a>
+        <p class="card-text" style="text-transform: uppercase; border-style: ridge; ">Category: {{i.category}}</p>
+      <p class="card-text" >Author: {{i.author}} | Created on:{{i.created_on}}</p>
+      
+    </div>
+  </div>
+{% endfor %}
+{%endblock content%}

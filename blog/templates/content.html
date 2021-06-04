@@ -1,0 +1,18 @@
+{% extends 'main.html'%}
+{% block content %}
+<div style="background:linear-gradient(rgb(65, 124, 148),rgb(226, 231, 235))", class=" card p-2">
+    {%for i in data%}
+    <h1 style="color:rgba(21, 23, 54, 0.828);">{{i.title}} </h1>
+    <br>
+    <p style="background:linear-gradient(rgb(166, 224, 99),white); padding:10px; margin:auto">{{i.content}}</p>
+    <br>
+    <h5>Author:{{i.author}}</h5>
+    <h5>Date:{{i.created_on}}</h5>
+    <h5>Category:{{i.category}}</h5>
+
+    {%endfor%}
+</div>
+
+
+
+{% endblock content %}
