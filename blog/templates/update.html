@@ -1,0 +1,37 @@
+{% extends 'main.html'%}
+
+{% block content %}
+<h1>hello</h1>
+
+<form method = "POST" action="update_blog">
+    
+    
+    {% csrf_token %}
+    {% for i in data%}
+    <h5>Title</h5>
+    <input class="inputbox" name="title" type="text" value="{{i.title}}" >
+    <h5>Author</h5>
+    <input class="inputbox" name="author" type="text" value="{{i.author}}">
+    <h5>Content</h5>
+  
+    <textarea name="content" rows=" 10" cols="100" placeholder="Content">{{i.content}}</textarea>
+    <h5>Category</h5>
+    <select name = "category">
+        <option value="sports"> Sports </option>
+        <option value="politics"> Politics</option>
+        <option value="fashion"> Fashion </option>
+        <option value="geography"> Geography</option>
+
+    </select>
+   
+    <br>
+    <input type="submit" value="Save" class="btn btn-primary m-2 p-2 ">
+
+    {% endfor %}
+    
+</form>
+
+
+
+
+{% endblock content %}

@@ -21,7 +21,55 @@ def content(request,header):
     else:
         return render(request,'home.html')
 
-    
+
+
+def create_blog(request):
+
+    return render(request,'create_blog.html')
+
+def create(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        author = request.POST['author']
+        category = request.POST['category']
+
+        Post.objects.create(title=title,content=content,author=author,category=category)    
+        data = Post.objects.all()
+        return render(request,"categories.html",{'data':data})    
+    else:
+        data = Post.objects.all()
+        return render(request,"categories.html",{'data':data})
+
+
+def delete(request, header):
+    del_post = Post.objects.get(title = header)
+    del_post.delete()
+    data = Post.objects.all()
+    return render(request,"categories.html",{'data':data})
+
+def update(request,header):
+    data = Post.objects.filter(title=header)
+    if (data):
+        return render(request,"update.html",{'data':data,'header':header})
+    else:
+        return render(request,'home.html')
+
+
+def update_blog(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        author = request.POST['author']
+        category = request.POST['category']
+        old = Post.objects.filter(title=title)
+        old.delete()
+        Post.objects.create(title=title,content=content,author=author,category=category)    
+        data = Post.objects.all()
+        return render(request,"categories.html",{'data':data})    
+    else:
+        data = Post.objects.all()
+        return render(request,"categories.html",{'data':data})
 
 def home(request):
     sports = Post.objects.filter(category='sports')

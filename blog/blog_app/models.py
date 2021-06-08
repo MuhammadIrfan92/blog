@@ -15,7 +15,8 @@ class test(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length= 200, null= True)
     slug = models.SlugField(max_length= 200, null= True)
-    author = models.ForeignKey(User, on_delete=CASCADE, related_name='blog_posts',null=True)
+   # author = models.ForeignKey(User, on_delete=CASCADE, related_name='blog_posts',null=True)
+    author = models.CharField(max_length=100, null=True)
     updated_on = models.DateTimeField(auto_now=True,null=True)
     content = models.TextField(null=True)
     category = models.CharField(max_length=200, null = True)

@@ -1,0 +1,29 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+<form method = "POST" action='create'>
+    {% csrf_token %}
+    <h5>Title</h5>
+    <input class="inputbox" name="title" type="text" placeholder="Title">
+    <h5>Author</h5>
+    <input class="inputbox" name="author" type="text" placeholder="Author">
+    <h5>Content</h5>
+  
+    <textarea name="content" rows=" 10" cols="100" placeholder="Content">---</textarea>
+    <h5>Category</h5>
+    <select name = "category">
+        <option value="sports"> Sports </option>
+        <option value="politics"> Politics</option>
+        <option value="fashion"> Fashion </option>
+        <option value="geography"> Geography</option>
+
+    </select>
+   
+    <br>
+    <input type="submit" value="Save" class="btn btn-primary m-2 p-2 ">
+</form>
+
+
+
+{% endblock content %}
