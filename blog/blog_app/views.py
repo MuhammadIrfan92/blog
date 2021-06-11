@@ -2,6 +2,7 @@ from django.db.models.fields.related import create_many_to_many_intermediary_mod
 from django.shortcuts import render
 from .models import Post
 from django.views import generic
+from django.http import HttpResponse
 # Create your views here.
 
 
@@ -29,14 +30,16 @@ def create_blog(request):
 
 def create(request):
     if request.method == 'POST':
+        
         title = request.POST['title']
         content = request.POST['content']
         author = request.POST['author']
         category = request.POST['category']
 
         Post.objects.create(title=title,content=content,author=author,category=category)    
-        data = Post.objects.all()
-        return render(request,"categories.html",{'data':data})    
+        #data = Post.objects.all()
+        #return render(request,"categories.html",{'data':data})  
+        return HttpResponse('')
     else:
         data = Post.objects.all()
         return render(request,"categories.html",{'data':data})

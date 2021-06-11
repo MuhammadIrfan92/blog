@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method = "POST" action='create'>
+<form id="new_blog">
     {% csrf_token %}
     <h5>Title</h5>
     <input class="inputbox" name="title" type="text" placeholder="Title">
@@ -23,6 +23,32 @@
     <br>
     <input type="submit" value="Save" class="btn btn-primary m-2 p-2 ">
 </form>
+
+
+<script type="text/javascript">
+    $(document).on('submit','#new_blog',function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type:'POST',
+            url:'create',
+            data:{
+                title:$('#title').val(),
+                author:$('#author').val(),
+                content:$('#content').val(),
+                category:$('#category').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                
+            },
+            success:function(){
+                
+                alert("Blog Created");
+                 
+            },
+        });
+    });
+
+</script>
 
 
 
