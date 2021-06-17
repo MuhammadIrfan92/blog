@@ -1,0 +1,37 @@
+<script>
+  $("#btnsave").click(function () {
+    console.log("Save Button Clicked");
+    let title = $("#titleid").val();
+    let author = $("#authorid").val();
+    let content = $("#contentid").val();
+    let category = $("#categoryid").val();
+
+    if (title == "") {
+      console.log("Enter title");
+    } else if (author == "") {
+      console.log("enter author");
+    } else if (content == "") {
+      console.log("enter content");
+    } else if (category == "") {
+      console.log("enter category");
+    } else {
+      //console.log(nm);
+      //console.log(em);
+      //console.log(pm);
+      mydata = {
+        title: title,
+        author: author,
+        content: content,
+        category: category,
+      };
+      $.ajax({
+        url: "{% url 'save' %}",
+        method: "POST",
+        data: mydata,
+        success: function (data) {
+          console.log(data);
+        },
+      });
+    }
+  });
+</script>

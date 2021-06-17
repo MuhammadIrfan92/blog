@@ -12,5 +12,7 @@ urlpatterns = [
     path('update/<str:header>',views.update,name = 'update'),
     path('home/<str:header>',views.content,name='content'),
     path('categories/<str:header>',views.catlist,name='catlist'),
+    path('create_ajax',views.create_ajax,name="create_ajax"),
+    path('save',views.save,name="save"),
     
 ]

@@ -1,8 +1,11 @@
 from django.db.models.fields.related import create_many_to_many_intermediary_model
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from .models import Post
 from django.views import generic
 from django.http import HttpResponse
+from .forms import createajax
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -86,8 +89,7 @@ def home(request):
         'geography':geography,
     }
     return render(request,"home.html",content)
-
-
+   
 
 
 class PostList(generic.ListView):
@@ -106,3 +108,25 @@ class PostDetail(generic.DetailView):
     model = Post
     template_name = 'post_detail.html'
 #While this view is executing, self.object will contain the object that the view is operating upon.
+
+def create_ajax(request):
+    crt = createajax()
+    return render(request,"create_ajax.html",{"form":crt})
+    
+
+@csrf_exempt
+
+def save(request):
+    if request.method == "POST":
+        form = createajax(request.POST)
+        if form.is_valid():
+            title = request.POST['title']
+            author = request.POST['author']
+            content = request.POST['content']
+            category = request.POST['category']
+            post = Post(title=title,author=author,content=content,category=category)
+            post.save()
+            return JsonResponse({"status":"Saved"})
+        else:
+            return JsonResponse({"status:0"})
+    
